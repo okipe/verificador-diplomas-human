@@ -1,0 +1,23 @@
+# WordPress
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+
+# Credenciales y entorno local
+*.env
+.env.local
+wp-config-local.php
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Node (por si acaso)
+node_modules/
