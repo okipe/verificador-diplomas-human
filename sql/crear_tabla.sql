@@ -6,7 +6,6 @@ CREATE TABLE IF NOT EXISTS wp_human_diplomas (
     tipo_doc_identificacion   VARCHAR(30)  NOT NULL,         -- DNI / CE / RUC / Pasaporte
     numero_doc_identificacion VARCHAR(30)  NOT NULL,
     nombre_completo           VARCHAR(150) NOT NULL,         -- Persona o razón social
-    nombre_empresa            VARCHAR(150) DEFAULT NULL,     -- Solo si el doc. es empresarial
     horas_academicas          INT          NOT NULL,
     modalidad                 VARCHAR(20)  NOT NULL,         -- Virtual / Presencial
     instructor                VARCHAR(100) NOT NULL,
