@@ -1,0 +1,389 @@
+/**
+ * Human Perú — Verificador de Diplomas
+ * Archivo: assets/style.css
+ * Versión: 1.1
+ *
+ * Colores de marca:
+ *   Azul principal  #1B3A6B   Títulos, botones, bordes
+ *   Amarillo acento #F5A623   Borde superior tarjeta válida
+ *   Verde éxito     #1A7A4A   Encabezado resultado VÁLIDO
+ *   Rojo error      #8B0000   Encabezado NO ENCONTRADO
+ *   Naranja alerta  #CC6600   Encabezado ANULADO
+ */
+
+/* ══════════════════════════════════════════════════════════════════
+   CONTENEDOR PRINCIPAL
+   ══════════════════════════════════════════════════════════════════ */
+
+.human-verificador-wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #222222;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ENCABEZADO DEL FORMULARIO
+   ══════════════════════════════════════════════════════════════════ */
+
+.human-form-header {
+  background-color: #f0f4fa;
+  border-left: 5px solid #1b3a6b;
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.human-form-header h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.1rem;
+  color: #1b3a6b;
+}
+
+.human-form-header p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555555;
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   FORMULARIO — INPUT Y BOTÓN
+   ══════════════════════════════════════════════════════════════════ */
+
+.human-input-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+/* Campo de texto del código */
+#human-codigo {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-family: "Courier New", monospace;
+  letter-spacing: 1px;
+  border: 2px solid #cccccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s;
+  text-transform: uppercase;
+}
+
+#human-codigo:focus {
+  border-color: #1b3a6b;
+  box-shadow: 0 0 0 3px rgba(27, 58, 107, 0.12);
+}
+
+/* Botón verificar */
+#human-btn-verificar {
+  padding: 12px 24px;
+  background-color: #1b3a6b;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+
+#human-btn-verificar:hover:not(:disabled) {
+  background-color: #142d54;
+}
+
+#human-btn-verificar:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* Estado deshabilitado mientras carga */
+#human-btn-verificar:disabled {
+  background-color: #888888;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   MENSAJES DE ERROR DE FORMATO
+   ══════════════════════════════════════════════════════════════════ */
+
+.human-msg {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  margin-top: 6px;
+}
+
+.human-msg-error {
+  background-color: #fff0f0;
+  border: 1px solid #8b0000;
+  color: #8b0000;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ÁREA DE RESULTADO
+   ══════════════════════════════════════════════════════════════════ */
+
+#human-resultado {
+  margin-top: 20px;
+}
+
+/* Base compartida por todos los estados de resultado */
+.human-resultado {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  animation: humanFadeIn 0.3s ease;
+}
+
+/* Animación de aparición suave */
+@keyframes humanFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Encabezado de la tarjeta resultado ─────────────────────────── */
+
+.human-resultado-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  color: #ffffff;
+}
+
+.human-resultado-header strong {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+.human-resultado-header small {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.human-icono {
+  font-size: 1.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ── Estado: VÁLIDO ─────────────────────────────────────────────── */
+
+.human-resultado-valido {
+  border-top: 5px solid #f5a623; /* Amarillo acento en la parte superior */
+}
+
+.human-resultado-valido .human-resultado-header {
+  background-color: #1a7a4a; /* Verde éxito */
+}
+
+/* ── Estado: NO ENCONTRADO ──────────────────────────────────────── */
+
+.human-resultado-error {
+  border-top: 5px solid #8b0000;
+}
+
+.human-resultado-error .human-resultado-header {
+  background-color: #8b0000; /* Rojo oscuro */
+}
+
+/* ── Estado: ANULADO ────────────────────────────────────────────── */
+
+.human-resultado-anulado {
+  border-top: 5px solid #cc6600;
+}
+
+.human-resultado-anulado .human-resultado-header {
+  background-color: #cc6600; /* Naranja advertencia */
+}
+
+/* ── Estado: CARGANDO ───────────────────────────────────────────── */
+
+.human-resultado-cargando {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  background-color: #f5f8ff;
+  border: 2px solid #d0daf0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #1b3a6b;
+}
+
+/* Spinner animado */
+.human-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #d0daf0;
+  border-top-color: #1b3a6b;
+  border-radius: 50%;
+  animation: humanSpin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes humanSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   TABLA DE DATOS DEL DIPLOMA (resultado válido)
+   ══════════════════════════════════════════════════════════════════ */
+
+.human-tabla-datos {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+}
+
+.human-tabla-datos tr:nth-child(odd) {
+  background-color: #f9fbff;
+}
+
+.human-tabla-datos tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.human-tabla-datos tr:hover {
+  background-color: #edf2fc;
+}
+
+/* Columna de etiqueta (icono + nombre del campo) */
+.human-label {
+  padding: 11px 16px;
+  font-size: 0.85rem;
+  color: #555555;
+  font-weight: 600;
+  white-space: nowrap;
+  width: 38%;
+  vertical-align: top;
+}
+
+/* Columna del valor del campo */
+.human-valor {
+  padding: 11px 16px 11px 0;
+  font-size: 0.9rem;
+  color: #222222;
+  line-height: 1.4;
+  vertical-align: top;
+}
+
+/* El código de serie se destaca con fuente monoespaciada */
+.human-codigo-serie {
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+  color: #1b3a6b;
+  letter-spacing: 1px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CONTENIDO DE TARJETAS DE ERROR
+   ══════════════════════════════════════════════════════════════════ */
+
+.human-mensaje-error {
+  padding: 16px 20px 4px 20px;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #333333;
+  line-height: 1.5;
+  background-color: #ffffff;
+}
+
+.human-contacto {
+  padding: 4px 20px 16px 20px;
+  margin: 0;
+  font-size: 0.85rem;
+  color: #555555;
+  background-color: #ffffff;
+}
+
+.human-contacto a {
+  color: #1b3a6b;
+  text-decoration: underline;
+}
+
+.human-contacto a:hover {
+  color: #f5a623;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   BOTÓN "NUEVA CONSULTA"
+   ══════════════════════════════════════════════════════════════════ */
+
+.human-btn-nueva {
+  display: block;
+  width: calc(100% - 40px);
+  margin: 16px 20px 20px;
+  padding: 11px 20px;
+  background-color: transparent;
+  color: #1b3a6b;
+  border: 2px solid #1b3a6b;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  text-align: center;
+}
+
+.human-btn-nueva:hover {
+  background-color: #1b3a6b;
+  color: #ffffff;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   DISEÑO RESPONSIVE — MÓVIL (≤ 480px)
+   ══════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  /* Apilar input y botón verticalmente en pantallas pequeñas */
+  .human-input-group {
+    flex-direction: column;
+  }
+
+  #human-codigo,
+  #human-btn-verificar {
+    width: 100%;
+  }
+
+  /* Reducir padding en la tabla en móvil */
+  .human-label {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+    width: 40%;
+  }
+
+  .human-valor {
+    padding: 10px 12px 10px 0;
+    font-size: 0.85rem;
+  }
+
+  .human-resultado-header {
+    padding: 14px 16px;
+    gap: 10px;
+  }
+
+  .human-resultado-header strong {
+    font-size: 0.9rem;
+  }
+
+  .human-btn-nueva {
+    width: calc(100% - 24px);
+    margin: 12px 12px 16px;
+  }
+}
